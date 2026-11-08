@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartValidate | Input Validation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">✦ SmartValidate</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#validators">Validators</a>
+            <a href="#about">About</a>
+        </nav>
+        <span class="status">● System Online</span>
+    </header>
+
+    <main id="home">
+
+        <section class="hero">
+            <div class="tag">AUTOMATA THEORY & COMPILER DESIGN</div>
+
+            <h1>
+                Smart Input Validation<br>
+                <span>Made Intelligent.</span>
+            </h1>
+
+            <p>
+                Validate usernames, mobile numbers and email addresses
+                using Finite Automata and Regular Expressions.
+            </p>
+
+            <a href="#validators" class="main-btn">
+                Explore Validators →
+            </a>
+        </section>
+
+        <section class="validators" id="validators">
+
+            <div class="section-heading">
+                <h2>Choose Your Validator</h2>
+                <p>Three intelligent modules. One validation platform.</p>
+            </div>
+
+            <div class="card-container">
+
+                <div class="validator-card username">
+                    <div class="card-icon">👤</div>
+                    <h3>Username Validator</h3>
+                    <p>
+                        Check username length, permitted characters
+                        and valid patterns.
+                    </p>
+                    <div class="card-label">DFA + REGEX</div>
+                    <a href="#username-tool" class="card-btn">Explore →</a>
+                </div>
+
+                <div class="validator-card mobile">
+                    <div class="card-icon">📱</div>
+                    <h3>Mobile Validator</h3>
+                    <p>
+                        Validate Indian mobile number formats
+                        and identify invalid inputs.
+                    </p>
+                    <div class="card-label">DFA + REGEX</div>
+                    <a href="#mobile-tool" class="card-btn">Explore →</a>
+                </div>
+
+                <div class="validator-card email">
+                    <div class="card-icon">✉️</div>
+                    <h3>Email Validator</h3>
+                    <p>
+                        Check email structure, username,
+                        domain and extension.
+                    </p>
+                    <div class="card-label">DFA + REGEX</div>
+                    <a href="#email-tool" class="card-btn">Explore →</a>
+                </div>
+
+            </div>
+        </section>
+
+<section class="tool-section" id="username-tool">
+    <div class="section-heading">
+        <h2>👤 Username Validation Lab</h2>
+        <p>Check your username using DFA and Regular Expressions.</p>
+    </div>
+
+    <div class="tool-card">
+        <label for="usernameInput">Enter your username</label>
+
+        <input
+            type="text"
+            id="usernameInput"
+            placeholder="Example: Sravya_123"
+            maxlength="50"
+            autocomplete="off"
+        >
+
+        <button id="usernameBtn" class="validate-btn">
+            Validate Username →
+        </button>
+
+        <div id="usernameResult" class="result-box" aria-live="polite">
+            Your validation result will appear here.
+        </div>
+
+        <div id="usernameDetails" class="details-box"></div>
+        <div class="dfa-section">
+    <h3>Username DFA – State Transition Diagram</h3>
+
+    <p>
+        q0 is the initial state. q5 to q15 are accepting states.
+        Invalid inputs lead to the rejection state.
+    </p>
+
+    <div class="dfa-diagram">
+        <div class="dfa-state initial">q0</div>
+        <span>→</span>
+        <div class="dfa-state">q1</div>
+        <span>→</span>
+        <div class="dfa-state">q2</div>
+        <span>→</span>
+        <div class="dfa-state">q3</div>
+        <span>→</span>
+        <div class="dfa-state">q4</div>
+        <span>→</span>
+        <div class="dfa-state accepting">q5</div>
+        <span>→</span>
+        <div class="dfa-state accepting">...</div>
+        <span>→</span>
+        <div class="dfa-state accepting">q15</div>
+    </div>
+
+    <p><strong>Initial transition:</strong> q0 accepts an English letter.</p>
+    <p><strong>Next transitions:</strong> q1–q14 accept letters, digits or underscore.</p>
+    <p><strong>Accepting states:</strong> q5–q15.</p>
+    <p><strong>Reject:</strong> Invalid characters, fewer than 5 or more than 15 characters.</p>
+
+    <h3>Username DFA Transition Table</h3>
+
+    <table class="transition-table">
+        <tr>
+            <th>Current State</th>
+            <th>Input</th>
+            <th>Next State</th>
+        </tr>
+        <tr><td>q0</td><td>English letter</td><td>q1</td></tr>
+        <tr><td>q0</td><td>Other character</td><td>REJECT</td></tr>
+        <tr><td>q1–q14</td><td>Letter / digit / _</td><td>Next state</td></tr>
+        <tr><td>q1–q4</td><td>End of input</td><td>REJECT</td></tr>
+        <tr><td>q5–q15</td><td>End of input</td><td>ACCEPT</td></tr>
+        <tr><td>q15</td><td>Another character</td><td>REJECT</td></tr>
+    </table>
+</div>
+    </div>
+</section>
+
+<section class="tool-section" id="mobile-tool">
+    <div class="section-heading">
+        <h2>📱 Mobile Number Validation Lab</h2>
+        <p>Validate Indian mobile numbers using DFA and Regular Expressions.</p>
+    </div>
+
+    <div class="tool-card">
+        <label for="mobileInput">Enter your mobile number</label>
+
+        <input
+            type="text"
+            id="mobileInput"
+            placeholder="Example: 9876543210"
+            maxlength="15"
+            inputmode="numeric"
+            autocomplete="off"
+        >
+
+        <button id="mobileBtn" class="validate-btn">
+            Validate Mobile Number →
+        </button>
+
+        <div id="mobileResult" class="result-box" aria-live="polite">
+            Your validation result will appear here.
+        </div>
+
+        <div id="mobileDetails" class="details-box"></div>
+        <div class="dfa-section">
+    <h3>Mobile Number DFA – State Transition Diagram</h3>
+
+    <p>
+        q0 is the initial state. The first digit must be 6, 7, 8 or 9.
+        q10 is the accepting state.
+    </p>
+
+    <div class="dfa-diagram">
+        <div class="dfa-state initial">q0</div>
+        <span>→</span>
+        <div class="dfa-state">q1</div>
+        <span>→</span>
+        <div class="dfa-state">q2</div>
+        <span>→</span>
+        <div class="dfa-state">q3</div>
+        <span>→</span>
+        <div class="dfa-state">...</div>
+        <span>→</span>
+        <div class="dfa-state accepting">q10</div>
+    </div>
+
+    <p><strong>Initial transition:</strong> q0 accepts digits 6, 7, 8 or 9.</p>
+    <p><strong>Next transitions:</strong> q1–q9 accept digits 0–9.</p>
+    <p><strong>Accepting state:</strong> q10 (exactly 10 digits).</p>
+    <p><strong>Reject:</strong> Any non-digit, invalid starting digit or incorrect length.</p>
+
+    <h3>Mobile Number DFA Transition Table</h3>
+
+    <table class="transition-table">
+        <tr>
+            <th>Current State</th>
+            <th>Input</th>
+            <th>Next State</th>
+        </tr>
+        <tr><td>q0</td><td>6, 7, 8, 9</td><td>q1</td></tr>
+        <tr><td>q0</td><td>Other digit</td><td>REJECT</td></tr>
+        <tr><td>q1–q9</td><td>Digit 0–9</td><td>Next state</td></tr>
+        <tr><td>q1–q9</td><td>End of input</td><td>REJECT</td></tr>
+        <tr><td>q10</td><td>End of input</td><td>ACCEPT</td></tr>
+        <tr><td>q10</td><td>Another digit</td><td>REJECT</td></tr>
+    </table>
+</div>
+    </div>
+</section>
+<section class="tool-section" id="email-tool">
+    <div class="section-heading">
+        <h2>📧 Email Address Validation Lab</h2>
+        <p>Validate email addresses using DFA and Regular Expressions.</p>
+    </div>
+
+    <div class="tool-card">
+        <label for="emailInput">Enter your email address</label>
+
+        <input type="text" id="emailInput"
+            placeholder="Example: student@gmail.com"
+            autocomplete="off">
+
+        <button id="emailBtn" class="validate-btn">
+            Validate Email →
+        </button>
+
+        <div id="emailResult" class="result-box">
+            Your validation result will appear here.
+        </div>
+
+        <div id="emailDetails" class="details-box"></div>
+        <div class="dfa-section">
+    <h3>Email DFA – State Transition Diagram</h3>
+
+    <p>
+        q0 is the initial state. q5 is an accepting state.
+        The automaton checks the username, @ symbol, domain and extension.
+    </p>
+
+    <div class="dfa-diagram">
+        <div class="dfa-state initial">q0</div>
+        <span>→</span>
+        <div class="dfa-state">q1</div>
+        <span>→</span>
+        <div class="dfa-state">q2</div>
+        <span>→</span>
+        <div class="dfa-state">q3</div>
+        <span>→</span>
+        <div class="dfa-state">q4</div>
+        <span>→</span>
+        <div class="dfa-state accepting">q5</div>
+    </div>
+
+    <p><strong>q0:</strong> Reads the first character of the username.</p>
+    <p><strong>q1:</strong> Reads remaining username characters and @.</p>
+    <p><strong>q2:</strong> Reads the first domain character.</p>
+    <p><strong>q3:</strong> Reads domain characters.</p>
+    <p><strong>q4:</strong> Reads the first extension letter.</p>
+    <p><strong>q5:</strong> Accepting state after a valid extension.</p>
+    <p><strong>Reject:</strong> Invalid characters or incorrect email structure.</p>
+
+    <h3>Email DFA Transition Table</h3>
+
+    <table class="transition-table">
+        <tr>
+            <th>Current State</th>
+            <th>Input</th>
+            <th>Next State</th>
+        </tr>
+        <tr><td>q0</td><td>Letter or digit</td><td>q1</td></tr>
+        <tr><td>q1</td><td>Username characters</td><td>q1</td></tr>
+        <tr><td>q1</td><td>@</td><td>q2</td></tr>
+        <tr><td>q2</td><td>Letter or digit</td><td>q3</td></tr>
+        <tr><td>q3</td><td>Domain characters</td><td>q3</td></tr>
+        <tr><td>q3</td><td>.</td><td>q4</td></tr>
+        <tr><td>q4</td><td>Letter</td><td>q5</td></tr>
+        <tr><td>q5</td><td>Extension letter</td><td>q5</td></tr>
+        <tr><td>q5</td><td>End of input</td><td>ACCEPT*</td></tr>
+    </table>
+
+    <p><strong>*Note:</strong> Final acceptance also requires the complete email to match the regular expression, including a valid extension of at least two letters.</p>
+</div>
+    </div>
+</section>
+        <section class="about" id="about">
+            <h2>How SmartValidate Works</h2>
+            <div class="steps">
+                <div>01<br><strong>Enter Input</strong></div>
+                <div>02<br><strong>Pattern Analysis</strong></div>
+                <div>03<br><strong>DFA Processing</strong></div>
+                <div>04<br><strong>Validation Result</strong></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>SmartValidate | ATCD Case Study | V Semester IT</p>
+        <p>Designed for learning Finite Automata and Regular Expressions.</p>
+    </footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
